@@ -11,8 +11,12 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
   }
 
-  body, input, select, textarea {
+  body, input, select, textarea, button {
     font-size: 1.6rem;
     font-family: Helvetica, Arial, sans-serif;
+  }
+
+  a {
+    text-decoration: none;
   }
 `;
