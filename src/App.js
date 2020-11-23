@@ -18,6 +18,7 @@ import Filter from "./components/Filter/Filter";
 
 function App() {
   const [products, setProducts] = useState(data.products);
+  const [cartItems, setCartItems] = useState([]);
   const [size, setSize] = useState("");
   const [sort, setSort] = useState("");
 
@@ -33,6 +34,24 @@ function App() {
       );
     }
   };
+
+  const addToCart = (product) => {
+    console.log(product);
+    const productItems = cartItems.slice();
+    let alreadyInCart = false;
+    productItems.forEach((item) => {
+      if (item._id === product._id) {
+        item.count++;
+        alreadyInCart = true;
+      }
+    });
+    if (!alreadyInCart) {
+      productItems.push({ ...product, count: 1 });
+    }
+    setCartItems(productItems);
+  };
+
+  console.log("cartItems", cartItems);
 
   const sortProducts = (event) => {
     setSort(event.target.value);
@@ -66,10 +85,10 @@ function App() {
                 filterProducts={filterProducts}
                 sortProducts={sortProducts}
               />
-              <ProductList products={products} />
+              <ProductList products={products} addToCart={addToCart} />
             </MainContent>
             <SidebarWrapper>
-              <Sidebar />
+              <Sidebar cartItems={cartItems} />
             </SidebarWrapper>
           </MainWrapper>
         </Main>

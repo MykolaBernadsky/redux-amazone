@@ -2,7 +2,7 @@ import React from 'react';
 import formatCurrency from '../../utils';
 import { ListOfProducts, ProductItem, ProductPrice } from './ProductList.styles';
 
-function ProductList({ products }) {
+function ProductList({ products, addToCart }) {
   return (
     <div>
       <ListOfProducts>
@@ -16,7 +16,7 @@ function ProductList({ products }) {
             </ProductItem>
             <ProductPrice>
               <div>{formatCurrency(product.price)}</div>
-              <button> Add to cart </button>
+              <button onClick={() => addToCart(product)} > Add to cart </button>
             </ProductPrice>
           </li>
         ))}
